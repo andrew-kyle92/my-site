@@ -17,17 +17,22 @@ function getDate(){
     return today.toLocaleDateString("en-US", options);
 }
 
+const date = getDate();
+
 // Mongoose Connection Parameters
 mongoose.connect('mongodb://localhost:27017/personalDB', {useNewUrlParser: true, useUnifiedTopology: true});
 
 // Database Schema
-const loginSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     email: String,
+    fname: String,
+    lname: String,
     username: String,
-    password: String
+    password: String,
+    comments: []
 });
 
-const Login = mongoose.model('Login', loginSchema);
+const User = mongoose.model('User', userSchema);
 
 // Setting static and other middleware configs
 app.set('view engine', 'ejs');
@@ -39,19 +44,56 @@ app.use(express.static('public'));
 // Home Page
 app.get('/', function(req, res){
     const homeTitle = 'Home';
-    res.render('home', {title: homeTitle});
+    res.render('home', {title: homeTitle, date: date});
 });
 
 // Work History Page
 app.get('/workhistory', function(req, res) {
     const title = "Work History"
-    res.render('history', {title: title})
+    res.render('history', {title: title, date: date});
 });
 
 // Login Page
 app.get('/login', function(req, res){
     const loginTitle = "Login";
-    res.render('login', {title: loginTitle})
+    res.render('login', {title: loginTitle, date: date});
+});
+
+// Registration Page
+app.get('/register', function(req,res){
+    const registerTitle = "Register";
+
+    res.render("register", {title: registerTitle, date: date});
+
+});
+
+app.post('/register', function(req,res){
+    const data = {
+        email: req.body.email,
+        fname: req.body.fname,
+        lname: req.body.lname,
+        uname: req.body.uname,
+        password: req.body.password
+    }
+
+    const user = new User({
+        email: data.email,
+        fname: data.fname,
+        lname: data.lname,
+        username: data.uname,
+        password: data.password
+    });
+
+    user.save(function(err){
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log("New user created.")
+        }
+    })
+
+    res.redirect('/');
 });
 
 
