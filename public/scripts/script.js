@@ -1,11 +1,18 @@
 // All variables
 
 
-// Tab Function
-function tabOptions() {
+// Tab Menu Function
+function tabOptions(evt, Option) {
     var tabContent = document.getElementsByClassName("tabcontent");
-    for (let i = 0; i < tabs.length; i++) {
-        const tab = tabContent[i].style.display = "none";
+    for (let i = 0; i < tabContent.length; i++) {
+        tabContent[i].style.display = "none";
     }
-    let tabLinks = document.getElementsByClassName('about-btn')
+
+    let tabLinks = document.getElementsByClassName('about-btn');
+    for (let i = 0; i < tabLinks.length; i++){
+        tabLinks[i].className = tabLinks[i].className.replace(" active", "");
+    }
+
+    document.getElementById(Option).style.display = "flex";
+    evt.currentTarget.className += " active";
 }

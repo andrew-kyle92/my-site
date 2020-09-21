@@ -107,7 +107,10 @@ footer {
 }
 
 .home-main {
-    background-color: rgb(219, 216, 216);
+    background-color: #313131;
+    color: #e6e6e6;
+    display: flex;
+    flex-direction: column;
     margin: auto;
     width: 80%;
 }
@@ -141,21 +144,11 @@ footer {
     background: linear-gradient(#1c95e6, #313131);
 }
 
-.about-btn:active {
+.about-btn.active {
     background: linear-gradient(to right, #00d2ff, #3a7bd5);
 }
 
-#family {
-    background-color: #313131;
-    color: #e6e6e6;
-    display: flex;
-    height: auto;
-    margin: 0rem auto;
-    width: 90%;
-}
-
 .about-p {
-    display: none;
     justify-content: space-around;
     margin-top: 1rem;
     width: 80%;
@@ -166,6 +159,19 @@ footer {
     float: left;
     margin-bottom: 1rem;
     margin-left: 1rem;
+}
+
+.tabcontent {
+    display: flex;
+}
+
+#family {
+    background-color: #313131;
+    color: #e6e6e6;
+    display: none;
+    height: auto;
+    margin: 0rem auto;
+    width: 90%;
 }
 
 
