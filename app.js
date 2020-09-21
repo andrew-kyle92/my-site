@@ -4,6 +4,10 @@ const app = express();
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const cookieSession = require('cookie-session');
+//const SC = require('soundcloud');
 
 // Date Function
 function getDate(){
@@ -17,8 +21,6 @@ function getDate(){
     return today.toLocaleDateString("en-US", options);
 }
 
-const date = getDate();
-
 // Mongoose Connection Parameters
 mongoose.connect('mongodb://localhost:27017/personalDB', {useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -29,7 +31,11 @@ const userSchema = new mongoose.Schema({
     lname: String,
     username: String,
     password: String,
-    comments: []
+    comments: [{
+        date: Date,
+        title: String,
+        post: String
+    }]
 });
 
 const User = mongoose.model('User', userSchema);
@@ -42,28 +48,43 @@ app.use(express.static('public'));
 // Post and Get requests
 
 // Home Page
-app.get('/', function(req, res){
+app.get('/', function(req, res){    
     const homeTitle = 'Home';
-    res.render('home', {title: homeTitle, date: date});
+    res.render('home', {title: homeTitle, date: getDate()});
 });
 
 // Work History Page
 app.get('/workhistory', function(req, res) {
     const title = "Work History"
-    res.render('history', {title: title, date: date});
+    res.render('history', {title: title, date: getDate()});
+});
+
+// About Page
+app.get('/about', function(req,res){
+    const aboutTitle = "About Me | Family Man"
+    res.render('about', {title: aboutTitle, date: getDate()});
 });
 
 // Login Page
 app.get('/login', function(req, res){
     const loginTitle = "Login";
-    res.render('login', {title: loginTitle, date: date});
+    res.render('login', {title: loginTitle, date: getDate()});
 });
+
+app.post('/login', function(req,res){
+    const data = {
+        username: req.body.username,
+        password: req.body.password
+    }
+    
+    
+})
 
 // Registration Page
 app.get('/register', function(req,res){
     const registerTitle = "Register";
 
-    res.render("register", {title: registerTitle, date: date});
+    res.render("register", {title: registerTitle, date: getDate()});
 
 });
 
