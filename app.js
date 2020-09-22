@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const cookieSession = require('cookie-session');
-//const SC = require('soundcloud');
+
 
 // Date Function
 function getDate(){
@@ -61,8 +61,8 @@ app.get('/workhistory', function(req, res) {
 
 // About Page
 app.get('/about', function(req,res){
-    const aboutTitle = "About Me | Family Man"
-    res.render('about', {title: aboutTitle, date: getDate()});
+    const aboutTitle = "About Me | Family Man";
+    res.render('about', {title: aboutTitle, date: getDate(), });
 });
 
 // Login Page
@@ -84,7 +84,7 @@ app.post('/login', function(req,res){
 app.get('/register', function(req,res){
     const registerTitle = "Register";
 
-    res.render("register", {title: registerTitle, date: getDate()});
+    res.render("register", {title: registerTitle, date: getDate(), script: null});
 
 });
 
