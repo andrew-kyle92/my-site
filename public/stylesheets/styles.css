@@ -150,22 +150,48 @@ footer {
 
 .about-p {
     justify-content: space-around;
-    margin-top: 1rem;
+    margin: 1rem auto;
+    text-align: justify;
     width: 80%;
 }
 
-.about-p img {
+.img1 {
     border-radius: 50px;
     float: left;
     margin-bottom: 1rem;
+    margin-right: 1rem;
+}
+
+.img2 {
+    border-radius: 50px;
+    float: right;
+    margin-bottom: 1rem;
     margin-left: 1rem;
+}
+
+.img3 {
+    margin: auto;
 }
 
 .tabcontent {
     display: flex;
 }
 
+iframe {
+    float: left;
+    margin-right: 1rem;
+}
+
 #family {
+    background-color: #313131;
+    color: #e6e6e6;
+    display: none;
+    height: auto;
+    margin: 0rem auto;
+    width: 90%;
+}
+
+#music {
     background-color: #313131;
     color: #e6e6e6;
     display: none;
