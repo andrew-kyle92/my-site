@@ -6,8 +6,11 @@ const ejs = require('ejs');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const cookieSession = require('cookie-session');
-
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const cookie = require(__dirname + '/controllers/cookieController.js');
+const age = cookie.age; // 2800000 ms = about 47 minutes
+const secret = cookie.secret;
 
 // Date Function
 function getDate(){
@@ -42,15 +45,21 @@ const User = mongoose.model('User', userSchema);
 
 // Setting static and other middleware configs
 app.set('view engine', 'ejs');
+app.use(cookieParser(secret, {maxAge: age, expires: 2800}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
+
 
 // Post and Get requests
 
 // Home Page
 app.get('/', function(req, res){    
     const homeTitle = 'Home';
-    res.render('home', {title: homeTitle, date: getDate()});
+    res.render('home', {
+        title: homeTitle,
+        date: getDate()});
+
+    console.log('Cookies :', req.cookies);
 });
 
 // Work History Page
@@ -61,7 +70,7 @@ app.get('/workhistory', function(req, res) {
 
 // About Page
 app.get('/about', function(req,res){
-    const aboutTitle = "About Me | Family Man";
+    const aboutTitle = "About Me";
     res.render('about', {title: aboutTitle, date: getDate(), });
 });
 
@@ -76,9 +85,7 @@ app.post('/login', function(req,res){
         username: req.body.username,
         password: req.body.password
     }
-    
-    
-})
+});
 
 // Registration Page
 app.get('/register', function(req,res){
