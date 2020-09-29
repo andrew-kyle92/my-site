@@ -8,9 +8,6 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const cookie = require(__dirname + '/controllers/cookieController.js');
-const age = cookie.age; // 2800000 ms = about 47 minutes
-const secret = cookie.secret;
 
 // Date Function
 function getDate(){
@@ -45,9 +42,14 @@ const User = mongoose.model('User', userSchema);
 
 // Setting static and other middleware configs
 app.set('view engine', 'ejs');
-app.use(cookieParser(secret, {maxAge: age, expires: 2800}));
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
+app.use(session({
+    secret: 'Andrew Site',
+    resave: false,
+    saveUninitialized: true
+}));
 
 
 // Post and Get requests
@@ -55,73 +57,218 @@ app.use(express.static('public'));
 // Home Page
 app.get('/', function(req, res){    
     const homeTitle = 'Home';
+    const cookie = req.cookies;
+    if(cookie.Authenticated){
+        User.findById({_id: cookie.Authenticated}, function(err, foundUser){
+            if(err){
+                console.log(err);
+            }
+            else{
+                var link = "/profile/" + cookie.Authenticated;
+                var note = foundUser.fname;
+                res.redirect('/profile');
+            }
+        })
+        
+    }
+    else{
+        res.cookie("name", "guest");
+        var link = "/login";
+        var note = "Login"
+    }
     res.render('home', {
         title: homeTitle,
-        date: getDate()});
-
-    console.log('Cookies :', req.cookies);
+        data: getDate(),
+        link: link,
+        note: note
+    });
 });
 
 // Work History Page
 app.get('/workhistory', function(req, res) {
     const title = "Work History"
-    res.render('history', {title: title, date: getDate()});
+    let cookie = req.cookieParser
+    if(cookie === "authenticated"){
+        var link = "/profile/" + cookie.userId;
+        var note = cookie.fName
+    }
+    else{
+        res.cookie("name", "guest");
+        var link = "/login";
+        var note = "Login"
+    }
+    res.render('history', {
+        title: title,
+        data: getDate(),
+        link: link,
+        note: note
+    });
 });
 
 // About Page
 app.get('/about', function(req,res){
     const aboutTitle = "About Me";
-    res.render('about', {title: aboutTitle, date: getDate(), });
+    let cookie = req.cookieParser
+    if(cookie === "authenticated"){
+        var link = "/profile/" + cookie.userId;
+        var note = cookie.fName
+    }
+    else{
+        res.cookie("name", "guest");
+        var link = "/login";
+        var note = "Login"
+    }
+    res.render('about', {
+        title: aboutTitle,
+        data: getDate(),
+        link: link,
+        note: note
+    });
 });
 
 // Login Page
 app.get('/login', function(req, res){
     const loginTitle = "Login";
-    res.render('login', {title: loginTitle, date: getDate()});
-});
-
-app.post('/login', function(req,res){
-    const data = {
-        username: req.body.username,
-        password: req.body.password
+    let cookie = req.cookieParser
+    if(cookie === "authenticated"){
+        var link = "/profile/" + cookie.userId;
+        var note = cookie.fName
     }
+    else{
+        res.cookie("name", "guest");
+        var link = "/login";
+        var note = "Login"
+    }
+    res.render('login', {
+        title: loginTitle,
+        data: getDate(),
+        link: link,
+        note
+    });
 });
 
 // Registration Page
 app.get('/register', function(req,res){
     const registerTitle = "Register";
-
-    res.render("register", {title: registerTitle, date: getDate(), script: null});
+    let cookie = req.cookieParser
+    if(cookie === "authenticated"){
+        var link = "/profile/" + cookie.userId;
+        var note = cookie.fName
+    }
+    else{
+        res.cookie("name", "guest");
+        var link = "/login";
+        var note = "Login"
+    }
+    res.render("register", {
+        title: registerTitle,
+        data: getDate(),
+        link: link,
+        note: note
+    });
 
 });
 
+// User Profile Page
+app.get('/profile/:userId', function(req, res){
+    const userId = req.params.userId;
+    let cookie = req.cookieParser
+    if(cookie === "authenticated"){
+        var link = "/profile/" + cookie.userId;
+        var note = cookie.fName
+    }
+    else{
+        res.cookie("name", "guest");
+        var link = "/login";
+        var note = "Login"
+    }
+
+    User.findById({_id: userId}, function(err, foundId){
+        if(err){
+            console.log(err);
+        }
+        else {
+            res.render('profile', {
+                title: "Profile | " + foundId.fname,
+                data: "Hello, " + foundId.username,
+                link: link,
+                note: note
+            });
+        }
+    });
+});
+
+// Post Request for Login
+app.post('/login', function(req,res){
+    const data = {
+        username: req.body.username,
+    }
+
+    User.findOne({username: data.username}, function(err, user){
+        if(err){
+            console.log(err);
+        }
+
+        bcrypt.compare(req.body.password, user.password, function(error, result){
+            if(error){
+                console.log(error)
+            }
+
+            if(result){
+                console.log(user.fname + " has authenticated");
+                res.clearCookie('name');
+                res.cookie('Authenticated', String(user._id), {
+                    maxAge: 28000000
+                });
+                res.redirect("/profile/" + user._id);
+            }
+        });
+
+    });
+});
+
+// Post Request for Register
 app.post('/register', function(req,res){
     const data = {
         email: req.body.email,
         fname: req.body.fname,
         lname: req.body.lname,
         uname: req.body.uname,
-        password: req.body.password
     }
 
-    const user = new User({
-        email: data.email,
-        fname: data.fname,
-        lname: data.lname,
-        username: data.uname,
-        password: data.password
+    bcrypt.hash(req.body.password, saltRounds, function(err, hash){
+        if (err) {
+            console.log(err);
+        }
+
+        if(hash){
+            const user = new User({
+                email: data.email,
+                fname: data.fname,
+                lname: data.lname,
+                username: data.uname,
+                password: hash
+            });
+        
+            user.save(function(err){
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    console.log("New user created.")
+                }
+            });
+        }
     });
 
-    user.save(function(err){
+    User.find({email: data.email}, function(err, foundUser){
         if(err){
             console.log(err);
         }
         else{
-            console.log("New user created.")
+            res.redirect('/profile/' + foundUser._id);
         }
-    })
-
-    res.redirect('/');
+    });
 });
 
 

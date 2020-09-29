@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="/stylesheets/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Gayathri&display=swap" rel="stylesheet">
 
 </head>
@@ -14,7 +14,7 @@
             <a href="/">Andrew Kyle</a>
         </div>
         <div nav-middle>
-            <p class="date"><%= date %></p>
+            <p class="date name"><%= data %></p>
             <div class='nav-links'>
                 <a href="/">Home</a>
                 <a href="/workhistory">Past Work</a>
@@ -23,6 +23,6 @@
             </div>
         </div>
         <div class="nav-right">
-            <a href="/login">Login</a>
+            <a href="<%= link %>"><%= note %></a>
         </div>
     </div>
