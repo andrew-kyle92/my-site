@@ -28,9 +28,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 
 app.use(session({
-    secret: 'My sercret keystring',
+    secret: 'My secret keystring',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 3600000
+    }
 }));
 
 app.use(passport.initialize());
@@ -68,9 +71,38 @@ passport.deserializeUser(User.deserializeUser());
 // Home Page
 app.get('/', function(req, res){    
     const homeTitle = 'Home';
+    console.log(req.session.cookie);
+
+    // if(req.isAuthenticated){
+    //     User.findById({_id: req.cookies}, function(err, foundUser){
+    //         if(err){
+    //             console.log(err);
+    //         }
+    //         else{
+    //             let link = '/profile/' + foundUser._id;
+    //             let note = foundUser.fname;
+    //             res.render('home', {
+    //                 title: homeTitle,
+    //                 data: getDate(),
+    //                 link: link,
+    //                 note: note
+    //             });
+    //         }
+    //     });
+    // }
+    // else{
+    //     var link = "/login";
+    //     var note = "Login";
+    //     res.render('home', {
+    //         title: homeTitle,
+    //         data: getDate(),
+    //         link: link,
+    //         note: note
+    //     });
+    // }
+
     var link = "/login";
     var note = "Login";
-
     res.render('home', {
         title: homeTitle,
         data: getDate(),
