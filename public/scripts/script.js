@@ -16,3 +16,10 @@ function tabOptions(evt, Option) {
     document.getElementById(Option).style.display = "flex";
     evt.currentTarget.className += " active";
 }
+
+// Checking Cookie for Site Changes
+let cookieID = document.cookie;
+
+if(cookieID === "null"){
+    
+}

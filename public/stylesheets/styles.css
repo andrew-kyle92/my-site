@@ -200,7 +200,14 @@ iframe {
     width: 90%;
 }
 
-
+#gaming {
+    background-color: #313131;
+    color: #e6e6e6;
+    display: none;
+    height: auto;
+    margin: 0rem auto;
+    width: 90%;
+}
 
 /* Login Page Styling */
 .sub-btn {
@@ -278,4 +285,32 @@ input[type=username], input[type=password] {
 
 .name {
     flex-direction: column;
+}
+
+/* Profile Styling */
+.logout {
+    color: #485563;
+    float: right;
+    margin-right: 3rem;
+    margin-top: 1rem;
+    text-decoration: none;
+    width: fit-content;
+}
+
+.logout:hover {
+    color: #e6e6e6;
+    text-shadow: 5px 5px 5px #302f2f;
+}
+
+.prof-main {
+    display: flexbox;
+    margin: auto;
+    width: 80%
+}
+
+.prof-img {
+    border: black 1px;
+    border-radius: 10px;
+    margin: auto 1rem auto auto;
+    
 }

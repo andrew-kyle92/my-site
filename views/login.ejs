@@ -2,6 +2,7 @@
 
 <form action="/login" method="POST">
     <div class="login-form">
+        <p class="err-login" style="color: red"><%= comment %></p>
         <div class="uname">
             <label for="username">Username</label>
             <input type="username" name="username" required placeholder="Username">

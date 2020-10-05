@@ -8,6 +8,8 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport')
 const passportLocalMongoose = require('passport-local-mongoose');
+// const cookies = require(__dirname + '/controllers/cookieController.js');
+// const cookie = cookies.cookieCheck();
 
 // Date Function
 function getDate(){
@@ -32,7 +34,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 3600000
+        maxAge: 3600000,
     }
 }));
 
@@ -71,86 +73,164 @@ passport.deserializeUser(User.deserializeUser());
 // Home Page
 app.get('/', function(req, res){    
     const homeTitle = 'Home';
-    console.log(req.session.cookie);
 
-    // if(req.isAuthenticated){
-    //     User.findById({_id: req.cookies}, function(err, foundUser){
-    //         if(err){
-    //             console.log(err);
-    //         }
-    //         else{
-    //             let link = '/profile/' + foundUser._id;
-    //             let note = foundUser.fname;
-    //             res.render('home', {
-    //                 title: homeTitle,
-    //                 data: getDate(),
-    //                 link: link,
-    //                 note: note
-    //             });
-    //         }
-    //     });
-    // }
-    // else{
-    //     var link = "/login";
-    //     var note = "Login";
-    //     res.render('home', {
-    //         title: homeTitle,
-    //         data: getDate(),
-    //         link: link,
-    //         note: note
-    //     });
-    // }
-
-    var link = "/login";
-    var note = "Login";
-    res.render('home', {
-        title: homeTitle,
-        data: getDate(),
-        link: link,
-        note: note
-    });
+    if(req.isAuthenticated){
+        User.findById({_id: req.cookies._id}, function(err, foundUser){
+            if(err){
+                console.log(err);
+                var link = "/login";
+                var note = "Login";
+                res.render('home', {
+                    title: homeTitle,
+                    data: getDate(),
+                    link: link,
+                    note: note
+                });
+            }
+            else{
+                let link = '/profile/' + foundUser._id;
+                let note = foundUser.fname;
+                res.render('home', {
+                    title: homeTitle,
+                    data: getDate(),
+                    link: link,
+                    note: note
+                });
+            }
+        });
+    }
+    else{
+        var link = "/login";
+        var note = "Login";
+        res.render('home', {
+            title: homeTitle,
+            data: getDate(),
+            link: link,
+            note: note
+        });
+    }
 });
 
 // Work History Page
 app.get('/workhistory', function(req, res) {
-    const title = "Work History"
-    var link = "/login";
-    var note = "Login";
-
-    res.render('history', {
-        title: title,
-        data: getDate(),
-        link: link,
-        note: note
-    });
+    const workTitle = "Work History"
+    if(req.isAuthenticated){
+        User.findById({_id: req.cookies._id}, function(err, foundUser){
+            if(err){
+                console.log(err);
+                var link = "/login";
+                var note = "Login";
+                res.render('history', {
+                    title: workTitle,
+                    data: getDate(),
+                    link: link,
+                    note: note
+                });
+            }
+            else{
+                let link = '/profile/' + foundUser._id;
+                let note = foundUser.fname;
+                res.render('history', {
+                    title: workTitle,
+                    data: getDate(),
+                    link: link,
+                    note: note
+                });
+            }
+        });
+    }
+    else{
+        var link = "/login";
+        var note = "Login";
+        res.render('history', {
+            title: workTitle,
+            data: getDate(),
+            link: link,
+            note: note
+        });
+    }
 });
 
 // About Page
 app.get('/about', function(req,res){
     const aboutTitle = "About Me";
-    var link = "/login";
-    var note = "Login";
-
-    res.render('about', {
-        title: aboutTitle,
-        data: getDate(),
-        link: link,
-        note: note
-    });
+    if(req.isAuthenticated){
+        User.findById({_id: req.cookies._id}, function(err, foundUser){
+            if(err){
+                console.log(err);
+                var link = "/login";
+                var note = "Login";
+                res.render('about', {
+                    title: aboutTitle,
+                    data: getDate(),
+                    link: link,
+                    note: note
+                });
+            }
+            else{
+                let link = '/profile/' + foundUser._id;
+                let note = foundUser.fname;
+                res.render('about', {
+                    title: aboutTitle,
+                    data: getDate(),
+                    link: link,
+                    note: note
+                });
+            }
+        });
+    }
+    else{
+        var link = "/login";
+        var note = "Login";
+        res.render('about', {
+            title: aboutTitle,
+            data: getDate(),
+            link: link,
+            note: note
+        });
+    }
 });
 
 // Login Page
 app.get('/login', function(req, res){
     const loginTitle = "Login";
-    var link = "/login";
-    var note = "Login";
-
-    res.render('login', {
-        title: loginTitle,
-        data: getDate(),
-        link: link,
-        note: note
-    });
+    if(req.isAuthenticated){
+        User.findById({_id: req.cookies._id}, function(err, foundUser){
+            if(err){
+                console.log(err);
+                var link = "/login";
+                var note = "Login";
+                res.render('login', {
+                    title: loginTitle,
+                    data: getDate(),
+                    link: link,
+                    note: note,
+                    comment: ""
+                });
+            }
+            else{
+                let link = '/profile/' + foundUser._id;
+                let note = foundUser.fname;
+                res.render('login', {
+                    title: loginTitle,
+                    data: getDate(),
+                    link: link,
+                    note: note
+                });
+            }
+        });
+    }
+    else{
+        var link = "/login";
+        var note = "Login";
+        res.render('login', {
+            title: loginTitle,
+            data: getDate(),
+            link: link,
+            note: note,
+            comment: ""
+        });
+    }
 });
 
 // Registration Page
@@ -175,6 +255,14 @@ app.get('/profile/:userId', function(req, res){
     User.findById({_id: userId}, function(err, foundId){
         if(err){
             console.log(err);
+            var link = "/login";
+            var note = "Login";
+            res.render('login', {
+                title: loginTitle,
+                data: getDate(),
+                link: link,
+                note: note
+            });
         }
         else {
             let link = "/profile/" + foundId._id;
@@ -193,6 +281,8 @@ app.get('/profile/:userId', function(req, res){
 app.get("/logout", function(req, res){
     req.logOut();
 
+    res.cookie('_id', null, {maxAge: 0});
+
     res.redirect("/");
 });
 
@@ -204,14 +294,23 @@ app.post('/login', function(req,res){
     });
 
     req.logIn(user, function(err){
-        if(err){console.log(err);}
+        if(err){
+            console.log(err);
+        }
+        else if(!user){
+            res.redirect('/login', {
+                comment: "username or password is incorrect"
+            });
+        }
         else{
             User.findOne({username: user.username}, function(err, foundUser){
                 if(err){
                     console.log(err);
+
                 }
                 else{
-                    passport.authenticate('local')(req, res, function(){
+                    passport.authenticate('local', {failureFlash: "Invalid username or password"})(req, res, function(){
+                        res.cookie('_id', String(foundUser._id), {maxAge: 3600000});
                         res.redirect('/profile/' + foundUser._id);
                     });
                 }
@@ -244,9 +343,9 @@ app.post('/register', function(req,res){
                 console.log(err);
             }
             else {
-
                 passport.authenticate('local')(req, res, function(){
-                res.redirect('/profile/' + foundUser._id);
+                    res.cookie('_id', String(foundUser._id), {maxAge: 3600000});
+                    res.redirect('/profile/' + foundUser._id);
                 });
             }
         });
