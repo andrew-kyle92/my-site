@@ -73,9 +73,8 @@ passport.deserializeUser(User.deserializeUser());
 // Home Page
 app.get('/', function(req, res){    
     const homeTitle = 'Home';
-
-    if(req.isAuthenticated){
-        User.findById({_id: req.cookies._id}, function(err, foundUser){
+    if(req.isAuthenticated()){
+        User.findById(req.cookies._id, function(err, foundUser){
             if(err){
                 console.log(err);
                 var link = "/login";
@@ -114,8 +113,9 @@ app.get('/', function(req, res){
 // Work History Page
 app.get('/workhistory', function(req, res) {
     const workTitle = "Work History"
-    if(req.isAuthenticated){
-        User.findById({_id: req.cookies._id}, function(err, foundUser){
+
+    if(req.isAuthenticated()){
+        User.findById(req.cookies._id, function(err, foundUser){
             if(err){
                 console.log(err);
                 var link = "/login";
@@ -154,8 +154,9 @@ app.get('/workhistory', function(req, res) {
 // About Page
 app.get('/about', function(req,res){
     const aboutTitle = "About Me";
-    if(req.isAuthenticated){
-        User.findById({_id: req.cookies._id}, function(err, foundUser){
+
+    if(req.isAuthenticated()){
+        User.findById(req.cookies._id, function(err, foundUser){
             if(err){
                 console.log(err);
                 var link = "/login";
@@ -194,8 +195,10 @@ app.get('/about', function(req,res){
 // Login Page
 app.get('/login', function(req, res){
     const loginTitle = "Login";
-    if(req.isAuthenticated){
-        User.findById({_id: req.cookies._id}, function(err, foundUser){
+    let userID = req.cookies._id
+
+    if(req.isAuthenticated()){
+        User.findById(userID, function(err, foundUser){
             if(err){
                 console.log(err);
                 var link = "/login";
@@ -211,12 +214,7 @@ app.get('/login', function(req, res){
             else{
                 let link = '/profile/' + foundUser._id;
                 let note = foundUser.fname;
-                res.render('login', {
-                    title: loginTitle,
-                    data: getDate(),
-                    link: link,
-                    note: note
-                });
+                res.redirect(link);
             }
         });
     }
@@ -252,7 +250,7 @@ app.get('/register', function(req,res){
 app.get('/profile/:userId', function(req, res){
     const userId = req.params.userId;
 
-    User.findById({_id: userId}, function(err, foundId){
+    User.findById(userId, function(err, foundId){
         if(err){
             console.log(err);
             var link = "/login";
@@ -279,9 +277,8 @@ app.get('/profile/:userId', function(req, res){
 
 // Post for Logging Out
 app.get("/logout", function(req, res){
-    req.logOut();
-
-    res.cookie('_id', null, {maxAge: 0});
+    req.logout();
+res.cookie('_id', null, {expires: new Date(Date.now())});
 
     res.redirect("/");
 });
@@ -303,14 +300,16 @@ app.post('/login', function(req,res){
             });
         }
         else{
-            User.findOne({username: user.username}, function(err, foundUser){
+            User.findOne({username: req.body.username}, function(err, foundUser){
                 if(err){
                     console.log(err);
 
                 }
                 else{
                     passport.authenticate('local', {failureFlash: "Invalid username or password"})(req, res, function(){
-                        res.cookie('_id', String(foundUser._id), {maxAge: 3600000});
+                        res.cookie('_id', (foundUser._id), {
+                            maxAge: 3600000,
+                        });
                         res.redirect('/profile/' + foundUser._id);
                     });
                 }

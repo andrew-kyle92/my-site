@@ -1,13 +1,13 @@
 exports.cookieCheck = function(){
-    let cookie = req.cookies
+    const allCookies = document.cookie;
     
     if(!cookie){
-        continue;
+        return false;
     }
     else if (cookie._id === null){
         res.cookie("_id", null, {maxAge: 0});
     }
     else{
-        continue;
+        return cookie;
     }
 }
