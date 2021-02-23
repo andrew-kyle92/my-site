@@ -1,8 +1,10 @@
+const cookieParser = require(cookie-parser);
+
 exports.cookieCheck = function(){
-    const allCookies = document.cookie;
+    const allCookies = cookieParser.JSONCookie(String);
     
-    if(!cookie){
-        return false;
+    if(allCookies === 0){
+        return "";
     }
     else if (cookie._id === null){
         res.cookie("_id", null, {maxAge: 0});

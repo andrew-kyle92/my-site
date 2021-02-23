@@ -43,6 +43,11 @@ hr {
     width: fit-content;
 }
 
+.name-logo:hover {
+    color: #e6e6e6;
+    text-shadow: 5px 5px 5px #302f2f;
+}
+
 .nav-left {
     margin: auto 0.5rem;
 }
@@ -58,16 +63,11 @@ hr {
     display: flex;
     flex-direction: row;
     margin: auto;
-    height: 100%;
     width: 100%;
 }
 
 .nav-links {
-    color: #485563;
     font-size: 28px;
-    margin: auto;
-    justify-content: space-between;
-    width: 100%;
 }
 
 .nav-links a {
@@ -85,18 +85,16 @@ hr {
     display: flex;
     flex-direction: column;
     margin: auto;
+    width: 80%;
 }
 
 .nav-right {
-    height: 100%;
     margin: auto;
-    width: 3%;
 }
 
 .nav-right a {
     color: #485563;
     text-decoration: none;
-    height: 100%;
 }
 
 .nav-right a:hover {
@@ -136,6 +134,7 @@ footer {
     color: #e6e6e6;
     display: flex;
     flex-direction: column;
+    height: auto;
     margin: auto;
     width: 80%;
 }
@@ -266,12 +265,21 @@ form {
     display: flex;
     flex-direction: column;
     font-size: 30px;
+    height: 100%;
     margin: 3rem auto;
-    width: 26%;
+    width: 40%;
 }
 
 label {
     width: 50%;
+}
+
+.login-form {
+    background-color: #313131;
+    border: 1px outset #313131;
+    border-radius: 8px;
+    box-shadow: 10px 10px 10px #3a7bd5;
+    color: #e6e6e6;
 }
 
 .login-form div {
@@ -287,12 +295,12 @@ input[type=username], input[type=password] {
 }
 
 .reg-a {
-    color: black;
+    color: #e6e6e6;
     text-decoration: underline;
 }
 
 .reg-a:hover {
-    color: #e6e6e6;
+    color: #00d2ff;
 }
 
 /* Registration Page Styling */
