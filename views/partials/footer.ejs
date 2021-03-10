@@ -1,4 +1,6 @@
-<script src="/scripts/script.js"></script>
+<% scripts.forEach(script => { %>
+    <script src=<%=script%>></script>
+<% }) %>
 </body>
 
 <footer>

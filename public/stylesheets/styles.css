@@ -183,7 +183,7 @@ footer {
     justify-content: space-around;
     margin: 1rem auto;
     text-align: justify;
-    width: 80%;
+    width: 90%;
 }
 
 .img1 {
@@ -208,11 +208,6 @@ footer {
     display: flex;
 }
 
-iframe {
-    float: left;
-    margin-right: 1rem;
-}
-
 #family {
     background-color: #313131;
     color: #e6e6e6;
@@ -229,6 +224,16 @@ iframe {
     height: auto;
     margin: 0rem auto;
     width: 90%;
+}
+
+.music-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.music {
+    width: 100%;
+    margin: 0rem 1rem;
 }
 
 #gaming {
