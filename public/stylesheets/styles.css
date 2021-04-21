@@ -11,6 +11,10 @@ body {
     text-align: center;
 }
 
+a {
+    width: 100%;
+}
+
 p {
     text-align: center;
     padding: 10px;

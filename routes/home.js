@@ -8,7 +8,6 @@ router.get('/', function(req, res){
     let scripts = ['scripts/script.js']
     res.render('home', {
         title: homeTitle,
-        data: date.getDate(),
         scripts: scripts,
     });
 });
