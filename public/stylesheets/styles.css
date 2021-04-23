@@ -1,6 +1,6 @@
 /* General Page Styling */
 html {
-    background-color: #b5b8bb;
+    background-color: #616169;
 }
 
 body {
@@ -11,16 +11,13 @@ body {
     text-align: center;
 }
 
-a {
-    width: 100%;
-}
-
 p {
     text-align: center;
     padding: 10px;
 }
 
 hr {
+    border-color: #e6e6e6;
     margin-bottom: 1rem;
     width: 65%;
 }
@@ -37,13 +34,12 @@ hr {
 }
 
 /* Nav-Bar Styling */
-.date {
+.name-logo {
     color: #485563;
-    font-size: 20px;
+    font-size: 28px;
     margin: auto;
-    padding: .1rem;
-    text-shadow: 0px 0px 5px rgb(255, 255, 255);
-    width: fit-content;
+    text-decoration: none;
+    text-align: center;
 }
 
 .name-logo:hover {
@@ -52,12 +48,14 @@ hr {
 }
 
 .nav-left {
-    margin: auto 0.5rem;
+    margin-left: 0.5rem;
+    width: 100%;
 }
 
 .nav-left a {
     color: #485563;
     font-size: 28px;
+    /* margin: auto; */
     text-decoration: none;
 }
 
@@ -65,7 +63,6 @@ hr {
     background: linear-gradient(to right, #00d2ff,#3a7bd5);
     display: flex;
     flex-direction: row;
-    margin: auto;
     width: 100%;
 }
 
@@ -85,8 +82,6 @@ hr {
 }
 
 .nav-middle {
-    display: flex;
-    flex-direction: column;
     margin: auto;
     width: 80%;
 }
@@ -116,15 +111,40 @@ footer {
     width: 100%;
 }
 
+footer p {
+    width: fit-content;
+    margin: auto;
+}
+
 .heart {
     color: rgb(133, 14, 14);
 }
 
 /* Main Page Content Styling */
-.home-h1 {
-    font-size: 40px;
-    margin: 2rem auto .5rem auto;
-    width: fit-content;
+.avatar {
+    border-radius: 75%;
+    width: 200px;
+    margin-left: 4rem;
+    margin-right: 1rem;
+}
+
+.home-top {
+    margin-top: 2rem;
+    display: flex;
+    flex-flow: row;
+}
+
+.home-top-desc {
+    display: table-caption;
+    table-layout: fixed;
+}
+
+.home h1 {
+    margin: auto
+}
+
+.home-top-p {
+    margin: auto 0rem 0rem;
 }
 
 .home-p {
@@ -135,6 +155,7 @@ footer {
 }
 
 .home-main {
+    box-shadow: 2px 2px 50px #1c95e6 ;
     background-color: #313131;
     color: #e6e6e6;
     display: flex;
@@ -145,7 +166,7 @@ footer {
 }
 
 .context {
-    margin: auto;
+    margin: 2rem auto;
     text-align: justify;
     width: 80%;
 }
@@ -158,7 +179,7 @@ footer {
     display: flex;
     flex-direction: row;
     height: fit-content;
-    margin: auto;
+    margin: 1rem auto auto auto;
     width: 55%; 
 }
 
@@ -186,7 +207,7 @@ footer {
 .about-p {
     justify-content: space-around;
     margin: 1rem auto;
-    text-align: justify;
+    text-align: left;
     width: 90%;
 }
 
@@ -212,15 +233,6 @@ footer {
     display: flex;
 }
 
-#family {
-    background-color: #313131;
-    color: #e6e6e6;
-    display: none;
-    height: auto;
-    margin: 0rem auto;
-    width: 90%;
-}
-
 #music {
     background-color: #313131;
     color: #e6e6e6;
@@ -233,20 +245,16 @@ footer {
 .music-content {
     display: flex;
     flex-direction: row;
+    height: 450px;
+}
+
+.music-content li {
+    font-size: 25px;
 }
 
 .music {
-    width: 100%;
+    width: 50%;
     margin: 0rem 1rem;
-}
-
-#gaming {
-    background-color: #313131;
-    color: #e6e6e6;
-    display: none;
-    height: auto;
-    margin: 0rem auto;
-    width: 90%;
 }
 
 /* Login Page Styling */
