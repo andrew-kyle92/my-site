@@ -11,6 +11,7 @@ router.get('/about', function(req,res){
         title: aboutTitle,
         scripts: scripts,
         date: d.getFullYear(),
+        guitar: d.getFullYear() - 2004,
     });
 });
 

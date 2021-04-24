@@ -178,6 +178,10 @@ footer p {
     color: #e6e6e6;
 }
 
+.email:hover {
+    text-decoration: underline;
+}
+
 /* About Page Styling */
 .top-bar {
     background-color: #ced9e2;
@@ -264,119 +268,23 @@ footer p {
     margin: 0rem 1rem;
 }
 
-/* Login Page Styling */
-.sub-btn {
-    border-width: 0px;
-    border-radius: 6px;
-    font-size: 19px;
-    font-family: 'Gayathri', sans-serif;
-    height: 30px;
-    margin-bottom: 1rem;
-    text-align: center;
-    padding: 6px 5px;
+/* Responsive Styling */
+@media screen and (max-width: 1500px) {
+    .nav-links a {
+        margin: 1rem;
+    }
 }
 
-.sub-btn:hover {
-    background: linear-gradient(to right, #00d2ff, #3a7bd5);
-    cursor: pointer;
-}
+@media screen and (max-width: 900px) {
+    .top-bar {
+        width: 45%;
+    }
 
-.sub-btn:active {
-    border-width: 0px;
-    transform: scale(1.1);
-}
+    .music-content {
+        flex-direction: column-reverse;
+    }
 
-form {
-    display: flex;
-    flex-direction: column;
-    font-size: 30px;
-    height: 100%;
-    margin: 3rem auto;
-    width: 40%;
-}
-
-label {
-    width: 50%;
-}
-
-.login-form {
-    background-color: #313131;
-    border: 1px outset #313131;
-    border-radius: 8px;
-    box-shadow: 10px 10px 10px #3a7bd5;
-    color: #e6e6e6;
-}
-
-.login-form div {
-    margin: .5rem auto;
-}
-
-input[type=username], input[type=password] {
-    width: 30%;
-}
-
-.login-p {
-    font-size: 20px;
-}
-
-.reg-a {
-    color: #e6e6e6;
-    text-decoration: underline;
-}
-
-.reg-a:hover {
-    color: #00d2ff;
-}
-
-/* Registration Page Styling */
-.register {
-    background-color: #ced9e2;
-    border: solid #485563;
-    box-shadow: 5px 10px 20px black;
-    border-width: 2px;
-    font-size: 22px;
-    word-spacing: 2px;
-}
-
-.register div {
-    margin: 1rem auto;
-    width: 100%;
-}
-
-.register p {
-    margin: 1rem;
-}
-
-.name {
-    flex-direction: column;
-}
-
-/* Profile Styling */
-.logout {
-    color: #485563;
-    float: right;
-    margin-right: 3rem;
-    margin-top: 1rem;
-    text-decoration: none;
-    width: fit-content;
-}
-
-.logout:hover {
-    color: #e6e6e6;
-    text-shadow: 5px 5px 5px #302f2f;
-}
-
-.prof-main {
-    background: #ced9e2;
-    display: flex;
-    margin: auto;
-    width: 80%
-}
-
-.prof-img {
-    border-color: black;
-    border-radius: 10px;
-    border-width: 4px;
-    margin: auto auto auto 1rem;
-    
+    iframe {
+        width: 600px;
+    }
 }
