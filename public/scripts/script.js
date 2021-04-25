@@ -15,3 +15,21 @@ function tabOptions(evt, Option) {
     document.getElementById(Option).style.display = "flex";
     evt.currentTarget.className += " active";
 }
+
+function playSong(evt) {
+    let songs = document.getElementsByClassName("song");
+    let songTitle = document.getElementsByClassName("song-title")[0];
+    let songAlbum = evt.path[0].dataset['album']
+    let songData = evt.path[0].dataset['song'];
+    for(let i = 0; i < songs.length; i++){
+        if(evt.path[0].innerText == songs[i].innerText && songAlbum == songs[i].getAttribute("data-album")){
+            songs[i].classList.toggle("song-active");
+            let songPath = `audio/Music/${songAlbum}/${songData}`;
+            songTitle.innerText = songs[i].innerText;
+            document.getElementById("my-audio").setAttribute("src", songPath);
+        }
+        else{
+            songs[i].className = "song";
+        }
+    }
+}

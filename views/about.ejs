@@ -9,9 +9,55 @@
     <div class="about-p">
         <div class="music-content">
             <div class="music">
-                <iframe width="100%" height="100%" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/842468336&color=%23514c3d&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
-                </iframe>
+                <div class="audio-player">
+                    <h1 class="song-title">Song Title</h1>
+                    <div class="audio-player-controls">
+                        <audio id="my-audio" controls="controls" controlsList="nodownload"></audio>
+                    </div>
+                    <hr>
+                    <div class="song-list">
+                        <table>
+                            <tr>
+                                <th>Album 1</th>
+                            </tr>
+                            <% songs["Album 1"].forEach(song => { %> 
+                                <tr>
+                                    <td><button class="song" onclick="playSong(event)" data-album="album1" data-song="<%= song %>"><%= song.slice(0, song.indexOf(".")) %></button></td>
+                                </tr>
+                            <% }); %>
+                        </table>
+                        <table>
+                            <tr>
+                                <th>Album 2</th>
+                            </tr>
+                            <% songs["Album 2"].forEach(song => { %> 
+                                <tr>
+                                    <td><button class="song" onclick="playSong(event)" data-album="album2" data-song="<%= song %>"><%= song.slice(0, song.indexOf(".")) %></button></td>
+                                </tr>
+                            <% }); %>
+                        </table>
+                        <table>
+                            <tr>
+                                <th>Album 3</th>
+                            </tr>
+                            <% songs["Album 3"].forEach(song => { %> 
+                                <tr>
+                                    <td><button class="song" onclick="playSong(event)" data-album="album3" data-song="<%= song %>"><%= song.slice(0, song.indexOf(".")) %></button></td>
+                                </tr>
+                            <% }); %>
+                        </table>
+                        <table>
+                            <tr>
+                                <th>Love</th>
+                            </tr>
+                            <% songs["Love"].forEach(song => { %> 
+                                <tr>
+                                    <td><button class="song" onclick="playSong(event)" data-album="love" data-song="<%= song %>"><%= song.slice(0, song.indexOf(".")) %></button></td>
+                                </tr>
+                            <% }); %>
+                        </table>
+                    </div>
+                </div>
             </div>
             <div class="music-content-p">
                 <li>I'm a self-taught guitarist who's been playing for <%= guitar %>  years!</li>
