@@ -287,9 +287,24 @@ audio {
     margin: auto;
 }
 
+/* Audio Webkit styling */
 audio::-webkit-media-controls-panel{
-    background: #b1acac;
+    background: linear-gradient(to right, #00d2ff, #3a7bd5);
 }
+
+audio::-webkit-media-controls-current-time-display {
+    color: #e6e6e6;
+}
+
+audio::-webkit-media-controls-time-remaining-display {
+    color: #e6e6e6;
+}
+
+audio::-webkit-media-controls-play-button {
+    background-color: #e6e6e6;
+    border-radius: 20px;
+}
+/* End Audio Webkit Styling */
 
 .song-list {
     display: inline-flex;
