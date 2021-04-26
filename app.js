@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const cookieParser = require('cookie-parser');
 let home = require("./routes/home");
-let about = require("./routes/about")
+let projects = require("./routes/projects");
+let about = require("./routes/about");
 
 // Setting static and other middleware configs
 app.set('view engine', 'ejs');
@@ -17,6 +18,8 @@ app.use(express.static('public'));
 
 // Home Page
 app.get("/", home);
+// Projects Page
+app.get("/projects", projects);
 // About Page
 app.get("/about", about);
 
