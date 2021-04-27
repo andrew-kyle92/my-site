@@ -7,7 +7,7 @@ router.get('/', function(req, res){
     const homeTitle = 'Home';
     d = new Date();
     let scripts = ['scripts/script.js'];
-    res.render('home', {
+    res.render('index', {
         title: homeTitle,
         scripts: scripts,
         date: d.getFullYear(),
