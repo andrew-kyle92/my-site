@@ -23,11 +23,7 @@ app.get("/projects", projects);
 // About Page
 app.get("/about", about);
 
-const port = process.env.port;
-if (port == null || port == ""){
-    port = 3000;
-}
 
-app.listen(port, function(){
+app.listen(3000, function(){
     console.log("Server started on port 3000");
 });

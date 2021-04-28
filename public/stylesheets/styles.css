@@ -6,7 +6,6 @@ html {
 body {
     margin: auto;
     width: 100%;
-    height: 100%;
     font-family: 'Gayathri', sans-serif;
     text-align: center;
 }
@@ -50,13 +49,6 @@ hr {
 .nav-left {
     margin-left: 0.5rem;
     width: 100%;
-}
-
-.nav-left a {
-    color: #485563;
-    font-size: 28px;
-    /* margin: auto; */
-    text-decoration: none;
 }
 
 .nav {
@@ -132,7 +124,7 @@ footer p {
 .home-top {
     margin-top: 2rem;
     display: flex;
-    flex-flow: row;
+    flex-direction: row;
 }
 
 .home-top-desc {
@@ -275,7 +267,11 @@ footer p {
 .music-content {
     display: flex;
     flex-direction: row;
-    height: 450px;
+    height: 100%;
+}
+
+.music-content-p {
+    margin: auto;
 }
 
 .music-content li {
@@ -284,7 +280,7 @@ footer p {
 
 .music {
     width: 50%;
-    margin: 0rem 1rem;
+    margin: auto;
 }
 
 .audio-player-controls {
@@ -342,7 +338,7 @@ audio::-webkit-media-controls-play-button {
     border-radius: 5px;
     color: white;
     width: 100%;
-    height: 25px;
+    height: auto;
 }
 
 .song-list button:hover {
@@ -377,20 +373,63 @@ audio::-webkit-media-controls-play-button {
 /* Responsive Styling */
 @media screen and (max-width: 1500px) {
     .nav-links a {
-        margin: 1rem;
+        margin: .5rem;
     }
 }
 
 @media screen and (max-width: 900px) {
     .top-bar {
-        width: 45%;
+        width: 80%;
+    }
+
+    .music {
+        width: 100%;
+        margin: auto;
+    }
+
+    .music-content {
+        margin: auto;
     }
 
     .music-content {
         flex-direction: column-reverse;
+        margin: auto;
     }
 
-    iframe {
-        width: 600px;
+    .song-list {
+        margin: .5rem auto;
+    }
+
+}
+
+@media screen and (max-width: 600px){
+    .avatar {
+        margin: auto;
+    }
+
+    .home-top {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .name-logo a {
+        font-size: 18px;   
+    }
+
+    .nav {
+        flex-direction: column;
+    }
+
+    .nav-middle {
+        width: 100%;
+    }
+
+    .email {
+        font-size: smaller;
+    }
+
+    .context {
+        width: 100%;
     }
 }
