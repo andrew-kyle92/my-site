@@ -2,7 +2,7 @@
 let express = require("express");
 let router = express.Router();
 const fs = require('fs');
-let albumsPath = "public/audio/Music/";
+let albumsPath = "public/Music/";
 let album1 = fs.readdirSync(albumsPath + "Album1");
 let album2 = fs.readdirSync(albumsPath + "Album2");
 let album3 = fs.readdirSync(albumsPath + "Album3");

@@ -117,12 +117,13 @@ footer p {
 .avatar {
     border-radius: 75%;
     width: 200px;
+    height: 220px;
     margin-left: 4rem;
     margin-right: 1rem;
 }
 
 .home-top {
-    margin-top: 2rem;
+    margin-top: 4rem;
     display: flex;
     flex-direction: row;
 }
@@ -154,7 +155,7 @@ footer p {
     display: flex;
     flex-direction: column;
     height: auto;
-    margin: auto;
+    margin:  8rem auto;
     width: 80%;
 }
 
@@ -324,7 +325,7 @@ audio::-webkit-media-controls-play-button {
 /* End Audio Webkit Styling */
 
 .song-list {
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 80%;
@@ -332,13 +333,17 @@ audio::-webkit-media-controls-play-button {
     text-align: center;
 }
 
-.song-list button {
+.album {
+    width: 20%;
+}
+
+.song {
     background: #8b8b8b;
     border: solid 1px;
     border-radius: 5px;
     color: white;
     width: 100%;
-    height: auto;
+    height: 30px;
 }
 
 .song-list button:hover {
@@ -349,7 +354,7 @@ audio::-webkit-media-controls-play-button {
     background: #5c5c5c;
 }
 
-.song-list th {
+.song-list h3 {
     text-decoration: underline;
 }
 
@@ -379,7 +384,7 @@ audio::-webkit-media-controls-play-button {
 
 @media screen and (max-width: 900px) {
     .top-bar {
-        width: 80%;
+        width: 90%;
     }
 
     .music {
@@ -410,9 +415,30 @@ audio::-webkit-media-controls-play-button {
     .home-top {
         flex-direction: column;
     }
+
+    .about-btn {
+        font-size: 22px;
+    }
 }
 
 @media screen and (max-width: 450px){
+    .about-btn {
+        font-size: 20px;
+    }
+
+    .audio-player-controls {
+        width: 100%;
+    }
+
+    .album {
+        margin: auto;
+        width: fit-content;
+    }
+
+    #my-audio {
+        width: 100%;
+    }
+
     .name-logo a {
         font-size: 18px;   
     }
@@ -431,5 +457,14 @@ audio::-webkit-media-controls-play-button {
 
     .context {
         width: 100%;
+    }
+
+    .song-list {
+        flex-direction: column;
+    }
+
+    .song {
+        height: 35px;
+        width: 55%;
     }
 }
