@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const cookieParser = require('cookie-parser');
-let home = require("./routes/home");
+let home = require("./routes/index");
 let projects = require("./routes/projects");
 let about = require("./routes/about");
 
@@ -22,6 +22,7 @@ app.get("/", home);
 app.get("/projects", projects);
 // About Page
 app.get("/about", about);
+
 
 app.listen(3000, function(){
     console.log("Server started on port 3000");

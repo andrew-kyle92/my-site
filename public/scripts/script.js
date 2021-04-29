@@ -24,7 +24,8 @@ function playSong(evt) {
     for(let i = 0; i < songs.length; i++){
         if(evt.path[0].innerText == songs[i].innerText && songAlbum == songs[i].getAttribute("data-album")){
             songs[i].classList.toggle("song-active");
-            let songPath = `audio/Music/${songAlbum}/${songData}`;
+            let songPath = `Music/${songAlbum}/${songData}`;
+            console.log(songPath);
             songTitle.innerText = songs[i].innerText;
             document.getElementById("my-audio").setAttribute("src", songPath);
         }
