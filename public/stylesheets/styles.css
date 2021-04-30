@@ -454,6 +454,8 @@ audio::-webkit-media-controls-play-button {
         margin: .5rem auto;
     }
 
+
+
 }
 
 @media screen and (max-width: 600px){
@@ -467,6 +469,29 @@ audio::-webkit-media-controls-play-button {
 
     .about-btn {
         font-size: 22px;
+    }
+
+    .about-p {
+        text-align: center;
+    }
+
+    .ps-logo {
+        margin: auto;
+    }
+
+    .icons {
+        flex-direction: row;
+        margin: auto;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    .content p {
+        border-left: 0px;
+        border-right: 0px;
+        margin: auto;
     }
 }
 
