@@ -369,8 +369,57 @@ audio::-webkit-media-controls-play-button {
 
 .coding-content {
     display: flex;
-    flex-direction: row;
-    height: 450px;
+    flex-direction: column;
+}
+
+.coding-content h1, h3 {
+    text-align: center;
+}
+
+.coding-content span {
+    text-decoration: underline;
+}
+
+.coding-content hr {
+    border-style: solid;
+}
+
+.coding-content p {
+    border-left: dotted dodgerblue;
+    border-right: dotted dodgerblue;
+    width: 80%;
+    text-align: justify;
+}
+
+.ps-logo {
+    max-width: 35px;
+    max-height: 35px;
+    margin: auto 1rem;
+}
+
+.powershell {
+    display: flex;
+}
+
+.web-dev {
+    display: flex;
+}
+
+.icons {
+    display: flex;
+    flex-direction: column;
+    margin: auto 1rem;
+    width: fit-content;
+}
+
+.python {
+    display: flex;
+}
+
+.code-content .fa, .fab {
+    font-size: 35px;
+    width: fit-content;
+    padding: 5px 5px;
 }
 
 /* End About Page Styling */
