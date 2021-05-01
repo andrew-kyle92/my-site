@@ -433,7 +433,7 @@ audio::-webkit-media-controls-play-button {
 
 @media screen and (max-width: 900px) {
     .top-bar {
-        width: 90%;
+        width: auto;
     }
 
     .music {
@@ -495,9 +495,9 @@ audio::-webkit-media-controls-play-button {
     }
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 475px){
     .about-btn {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .audio-player-controls {
@@ -511,6 +511,10 @@ audio::-webkit-media-controls-play-button {
 
     #my-audio {
         width: 100%;
+    }
+
+    .coding-content h1, h3 {
+        text-align: center;
     }
 
     .name-logo a {
@@ -540,5 +544,9 @@ audio::-webkit-media-controls-play-button {
     .song {
         height: 35px;
         width: 55%;
+    }
+
+    .top-bar {
+        width: 78%;
     }
 }
