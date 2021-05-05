@@ -297,7 +297,7 @@ footer p {
 }
 
 .audio-player h1 {
-    margin: 1rem auto;
+    margin: 1rem auto auto;
     width: fit-content;
 }
 
@@ -346,16 +346,21 @@ audio::-webkit-media-controls-play-button {
     height: 30px;
 }
 
+.song:active {
+    background: #5c5c5c;
+}
+
 .song-list button:hover {
     background: #6d6d6d;
 }
 
-.song.song-active {
-    background: #5c5c5c;
-}
-
 .song-list h3 {
     text-decoration: underline;
+}
+
+.song-album{
+    width: fit-content;
+    margin: auto;
 }
 
 #coding {

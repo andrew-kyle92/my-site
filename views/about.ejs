@@ -11,6 +11,7 @@
             <div class="music">
                 <div class="audio-player">
                     <h1 class="song-title"></h1>
+                    <h3 class="song-album"></h3>
                     <div class="audio-player-controls">
                         <audio id="my-audio" controls="controls" controlsList="nodownload"></audio>
                     </div>
@@ -19,25 +20,25 @@
                         <div class="album">
                             <h3>Album 1</h3>
                             <% songs["Album 1"].forEach(song => { %> 
-                                <button class="song" onclick="playSong(event)" data-album="Album1" data-song="<%= song %>"><%= song.slice(0, song.indexOf(".")) %></button>
+                                <button class="song" data-album="Album1" data-song="<%= song %>"><%= song.slice(0, song.indexOf(".")) %></button>
                             <% }); %>
                         </div>
                         <div class="album">
                             <h3>Album 2</h3>
                             <% songs["Album 2"].forEach(song => { %> 
-                                    <button class="song" onclick="playSong(event)" data-album="Album2" data-song="<%= song %>"><%= song.slice(0, song.indexOf(".")) %></button>
+                                    <button class="song" data-album="Album2" data-song="<%= song %>"><%= song.slice(0, song.indexOf(".")) %></button>
                             <% }); %>
                         </div>
                         <div class="album">
                             <h3>Album 3</h3>
                             <% songs["Album 3"].forEach(song => { %> 
-                                    <button class="song" onclick="playSong(event)" data-album="Album3" data-song="<%= song %>"><%= song.slice(0, song.indexOf(".")) %></button>
+                                    <button class="song" data-album="Album3" data-song="<%= song %>"><%= song.slice(0, song.indexOf(".")) %></button>
                             <% }); %>
                         </div>
                         <div class="album">
                             <h3>Love</h3>
                             <% songs["Love"].forEach(song => { %> 
-                                    <button class="song" onclick="playSong(event)" data-album="Love" data-song="<%= song %>"><%= song.slice(0, song.indexOf(".")) %></button>
+                                    <button class="song" data-album="Love" data-song="<%= song %>"><%= song.slice(0, song.indexOf(".")) %></button>
                             <% }); %>
                         </div>
                     </div>
