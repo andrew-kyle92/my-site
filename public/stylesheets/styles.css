@@ -272,7 +272,7 @@ footer p {
 }
 
 .music-content-p {
-    margin: auto;
+    margin: auto 1rem;
 }
 
 .music-content li {
@@ -328,8 +328,8 @@ audio::-webkit-media-controls-play-button {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 80%;
-    margin: 1rem 3.5rem;
+    width: 85%;
+    margin: 1rem auto;
     text-align: center;
 }
 
@@ -337,21 +337,23 @@ audio::-webkit-media-controls-play-button {
     width: 20%;
 }
 
+.album h3 {
+    text-align: center;
+}
+
 .song {
-    background: #8b8b8b;
-    border: solid 1px;
-    border-radius: 5px;
-    color: white;
-    width: 100%;
-    height: 30px;
+    background: #e6e6e6;
+    border: none;
+    color: #485563;
+    width: fit-content;
 }
 
 .song:active {
-    background: #5c5c5c;
+    font-weight: bolder;
 }
 
 .song-list button:hover {
-    background: #6d6d6d;
+    font-weight: bold;
 }
 
 .song-list h3 {
