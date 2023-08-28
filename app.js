@@ -23,7 +23,6 @@ app.get("/projects", projects);
 // About Page
 app.get("/about", about);
 
-
 app.listen(3000, function(){
     console.log("Server started on port 3000");
 });
